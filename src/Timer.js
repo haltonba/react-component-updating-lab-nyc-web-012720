@@ -5,12 +5,22 @@ class Timer extends Component {
     super();
     this.timer = React.createRef();
     this.state = {
-      time: 0,
+      time: 2,
       color: "#" + Math.floor(Math.random() * 16777215).toString(16)
     };
   }
 
-  //Your code here
+  componentDidUpdate() {
+    this.timer.current.style.background = "#" + Math.floor(Math.random() * 16777215).toString(16);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.state.time === nextState.time) {
+      return false
+    } else {
+      return true
+    }
+  }
 
   componentDidMount() {
     this.interval = setInterval(
